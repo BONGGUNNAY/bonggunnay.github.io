@@ -1,14 +1,13 @@
+/* 基础样式 */
 html {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, sans-serif;
-  font-size: 14px;
-  font-weight: 400;
-  color: #333;
+  font-size: 16px;
+  font-weight: 360;
+  color: #91a1b8;
   line-height: 1.5;
-}
-
-html {
   box-sizing: border-box;
+  background: #0f172a;
 }
 
 *,
@@ -17,42 +16,66 @@ html {
   box-sizing: inherit;
 }
 
+/* 主体布局 - 左右分栏 */
 body {
-  /* max-width: 48rem; 用这个方式也行，到时候看下哪个效果好 */
-  width: 80%;
-  padding-right: 2rem;
-  padding-left: 2rem;
-  margin-right: auto;
-  margin-left: auto;
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 3rem;
+  gap: 2rem;
 }
 
-@media screen and (min-width: 1025px) {
-  body {
-    width: 768px;
-  }
+/* 左侧固定栏 */
+.block-title-container {
+  position: sticky;
+  /* 使元素具有"粘性"定位特性，当滚动到指定位置时会固定在视窗中。 */
+  top: 0;
+  /* 指定元素在视窗顶部保持固定（当触发粘性效果时）。 */
+  width: 42%;
+  /* 设置容器固定宽度为280像素。 */
+  height: 100vh;
+  /* 使容器高度等于整个视窗高度（100% viewport height）。 */
+  display: flex;
+  /* 启用Flexbox布局模型。 */
+  flex-direction: column;
+  /* 设置子元素垂直排列（从上到下）。 */
+  align-items: flex-start;
+  /* 子元素沿交叉轴（水平方向）左对齐。 */
+  padding-right: 1rem;
+  /* 右侧添加1rem（约16px）的内边距，避免内容贴边。 */
 }
 
-.scrollblock.block-title h1 {
-  display: inline-block; /* 让标题和图标可以并排 */
-  margin-right: 0.5rem; /* 标题和图标之间的间距 */
+/* 右侧滚动内容 */
+.main-content {
+  flex: 1;
+  /* 这是Flexbox布局属性，表示该元素在容器中具有"弹性增长"特性。 */
+  /* 数字1是flex-grow的简写，意味着该元素会占据容器中所有剩余可用空间（如果同级元素也有flex属性，则按比例分配）。 */
+  max-width: calc(100% - 300px);
+  /* 使用calc()函数进行动态计算，通常用于创建固定侧边栏+流动主内容的布局 */
+  /* 例如：如果视窗宽度是1200px，则最大宽度为900px（1200-300） */
 }
 
-.icon-xiongmao-panda {
-  display: inline-block; /* 确保图标可以并排显示 */
-  transform: scaleX(-1); /* 水平镜像翻转 */
-  font-size: 3.6em; /* 调整图标大小 */
-}
-
+/* 标题区域样式 */
 .block-title h1 {
   font-size: 2.8rem;
   margin-bottom: 1.5rem;
-  font-weight: 200;
-  color: #222;
+  font-weight: 680;
+  color: #e2e8f0;
+  display: inline-block;
+  margin-right: 0.5rem;
+}
+
+.icon-xiongmao-panda {
+  display: inline-block;
+  transform: scaleX(-1);
+  font-size: 3.6em;
 }
 
 .contact-info {
   font-size: 0.9em;
-  color: #161616;
+  color: #94a3b8;
 }
 
 .location {
@@ -77,7 +100,7 @@ body {
   background: none;
   border: none;
   padding: 0.3rem;
-  color: #161616;
+  color: #94a3b8;
   cursor: pointer;
   font-size: 0.9em;
   display: inline-flex;
@@ -87,76 +110,74 @@ body {
 
 /* 简介部分 */
 .block-summary {
-  /* box-sizing: border-box; */
   margin-top: 1rem;
-  padding: 1.2rem 1.2rem;
-  background-color: #f5f5f5;
-  border-radius: 2px; /* 轻微圆角 */
-  /* border: 1px solid #e5e5e5; 灰色边框 */
+  border-radius: 2px;
 }
 
 .block-summary p {
-  font-size: 0.92rem;
-  line-height: 1.5;
-  color: #505050;
-  text-align: justify; /* 两端对齐 */
-  hyphens: auto; /* 自动连字符换行 */
-  margin: 0; /* 移除底部留白，由容器padding控制 */
+  font-size: 0.95rem;
+  line-height: 1.6;
+  text-align: justify;
+  hyphens: auto;
+  margin: 0;
 }
 
-/* ===================== 分隔线 ===================== */
-.block-skills {
-  border-top: 1.2px solid #dddddd;
+/* 分隔线样式 */
+.block-skills,
+.block-work,
+.block-projects,
+.block-edu {
+  border-top: 1.2px solid transparent;
   margin-top: 2rem;
 }
 
-/* ===================== 各模块标题样式 ===================== */
+/* 模块标题样式 */
 .block-skills h2,
 .block-work h2,
 .block-projects h2,
 .block-edu h2 {
   font-size: 0.92rem;
   font-weight: 600;
-  color: #ec67f8; /* 橙色色调 */
+  color: #e2e8f0;
   margin-bottom: 1.2rem;
   margin-top: 1.2rem;
 }
 
-/* ===================== 技能项样式 ===================== */
+/* 技能项样式 */
 .skill-item {
   margin-bottom: 0rem;
   margin-top: 0rem;
 }
 
 .skill-header {
-  display: flex; /* 将技能标题区域设为flex布局 */
-  flex-direction: column; /* 改为垂直排列 */
-  align-items: flex-start; /* 垂直方向居中对齐 */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .skill-header h3 {
   font-size: 0.92rem;
   margin-top: 0.5rem;
-  margin-bottom: 0.5rem; /* 增加下边距，为等级标签留出空间 */
+  margin-bottom: 0.5rem;
   font-weight: 480;
-  text-decoration: underline;
+  color: #e2e8f0;
 }
 
 .skill-header .level {
-  align-self: flex-start; /* 将等级标签对齐到左侧 */
+  align-self: flex-start;
   font-size: 0.8rem;
   font-weight: 600;
   padding: 0.1em 0.5em;
   border-radius: 4px;
-  color: #fff;
+  color: #ffffff;
 }
 
 .level.advanced {
-  background-color: #3ca613;
+  background-color: #2a730d;
 }
 
 .level.intermediate {
-  background-color: #f8b84a;
+  background-color: #c18f39;
 }
 
 .keywords {
@@ -169,50 +190,33 @@ body {
 }
 
 .keywords li {
-  background-color: #f2f2f2;
+  background-color: #122b39;
+  color: #5eead4;
   padding: 0.3em 0.6em;
   border-radius: 2px;
   font-size: 0.8rem;
 }
 
-/* 响应式技能展示：默认 3 项一行 */
-/* @media screen and (min-width: 768px) {
-  .block-skills .skill-item {
-    width: calc(33.333% - 1rem);
-    display: inline-block;
-    vertical-align: top;
-    margin-right: 1rem;
-  }
-
-  .block-skills .skill-item:nth-child(3n) {
-    margin-right: 0;
-  }
-} */
-
+/* 技能网格布局 */
 .scrollblock.block-skills {
-  display: grid; /* 整个容器设为网格 */
-  grid-template-areas: "title" "skills"; /* 定义两个区域：标题 + 技能 */
-  gap: 0rem; /* 控制标题和技能组之间的间距 */
+  display: grid;
+  grid-template-areas: "title" "skills";
+  gap: 0rem;
 }
 
 .block-skills h2 {
-  grid-area: title; /* 将 h2 固定在标题区域 */
+  grid-area: title;
   margin-bottom: 0.5rem;
 }
 
 .block-skills .skill-container {
-  grid-area: skills; /* 技能项容器放在技能区域 */
+  grid-area: skills;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(228px, 1fr));
   gap: 1rem;
 }
 
-/* ===================== 工作经历样式 ===================== */
-.block-work {
-  border-top: 1.2px solid #dddddd;
-  margin-top: 2rem;
-}
-
+/* 工作经历样式 */
 .block-work .work-item {
   margin-bottom: 2rem;
 }
@@ -221,26 +225,27 @@ body {
   font-weight: bold;
   font-size: 1.2rem;
   display: inline;
+  color: #e2e8f0;
 }
 
 .block-work .company::before {
   content: " | ";
   font-size: 1.1rem;
   margin: 0 0.4rem;
-  color: #888;
+  color: #e2e8f0;
 }
 
 .block-work .company {
   display: inline;
   font-size: 1.1rem;
-  color: #666;
+  color: #e2e8f0;
 }
 
 .block-work .time {
   float: right;
   font-size: 0.92rem;
-  color: #333;
   font-weight: 630;
+  color: #64748b;
 }
 
 .block-work .company-website {
@@ -249,7 +254,7 @@ body {
 }
 
 .block-work .company-website a {
-  color: #666;
+  color: #e2e8f0;
   text-decoration: underline;
   font-size: 0.92rem;
 }
@@ -269,12 +274,7 @@ body {
   margin-bottom: 1rem;
 }
 
-/* ===================== 项目经历样式 ===================== */
-.block-projects {
-  border-top: 1.2px solid #dddddd;
-  margin-top: 2rem;
-}
-
+/* 项目经历样式 */
 .block-projects .project-item {
   margin-bottom: 2rem;
 }
@@ -283,12 +283,13 @@ body {
   font-weight: bold;
   font-size: 1.2rem;
   display: inline;
+  color: #e2e8f0;
 }
 
 .block-projects .time {
   float: right;
   font-size: 0.92rem;
-  color: #333;
+  color: #64748b;
   font-weight: 630;
 }
 
@@ -307,12 +308,7 @@ body {
   margin-bottom: 1rem;
 }
 
-/* ===================== 教育经历样式===================== */
-.block-edu {
-  border-top: 1.2px solid #dddddd;
-  margin-top: 2rem;
-}
-
+/* 教育经历样式 */
 .block-edu .edu-item {
   margin-bottom: 2rem;
 }
@@ -321,25 +317,26 @@ body {
   font-weight: bold;
   font-size: 1.2rem;
   display: inline;
+  color: #e2e8f0;
 }
 
 .block-edu .major::before {
   content: " | ";
   font-size: 1.1rem;
   margin: 0 0.4rem;
-  color: #888;
+  color: #e2e8f0;
 }
 
 .block-edu .major {
   display: inline;
   font-size: 1.1rem;
-  color: #666;
+  color: #e2e8f0;
 }
 
 .block-edu .time {
   float: right;
   font-size: 0.92rem;
-  color: #333;
+  color: #64748b;
   font-weight: 630;
 }
 
@@ -349,19 +346,69 @@ body {
 }
 
 .block-edu .school-website a {
-  color: #666;
+  color: #e2e8f0;
   text-decoration: underline;
   font-size: 0.92rem;
 }
 
-/* 打印适配
-@media print {
+/* 响应式设计 - 小屏幕时恢复单列布局 */
+@media screen and (max-width: 768px) {
   body {
-    margin: 0 auto;
-    padding: 0;
-    -ms-word-wrap: break-word;
-    word-wrap: break-word;
-    line-height: 1.5;
-    font-family: Arial, Georgia, "Lucida Grande", sans-serif;
+    flex-direction: column;
+    width: 90%;
+    padding: 1rem;
   }
-} */
+
+  .block-title-container {
+    position: static;
+    width: 100%;
+    height: auto;
+    padding-right: 0;
+  }
+
+  .main-content {
+    max-width: 100%;
+  }
+}
+
+/* 更新CSS部分 */
+:root {
+  --bg-color: #0f172a;
+  --light-color-1: rgba(31, 41, 71, 0.8);
+  --light-color-2: rgba(23, 33, 63, 0.9);
+  --light-color-3: rgba(19, 28, 54, 0.95);
+  --mouse-x: -9999px;
+  --mouse-y: -9999px;
+}
+
+body {
+  position: relative;
+  min-height: 100vh;
+  background: var(--bg-color);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at var(--mouse-x) var(--mouse-y),
+    var(--light-color-1) 0%,
+    var(--light-color-2) 16%,
+    var(--light-color-3) 28%,
+    var(--bg-color) 40%
+  );
+  pointer-events: none;
+  z-index: 0;
+  transition: background 0.2s ease-out;
+  will-change: background;
+}
+
+.main-content,
+.block-title-container {
+  position: relative;
+  z-index: 1;
+}
