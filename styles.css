@@ -7,7 +7,7 @@ html {
   color: #91a1b8;
   line-height: 1.5;
   box-sizing: border-box;
-  background: #0f172a;
+  background: #0a192f;
 }
 
 *,
@@ -16,51 +16,24 @@ html {
   box-sizing: inherit;
 }
 
-/* 主体布局 - 左右分栏 */
 body {
-  display: flex;
-  flex-direction: row;
-  width: 90%;
+  width: 68%;
   max-width: 1280px;
   margin: 0 auto;
-  padding: 3rem;
-  gap: 2rem;
+  padding: 2rem;
 }
 
-/* 左侧固定栏 */
-.block-title-container {
-  position: sticky;
-  /* 使元素具有"粘性"定位特性，当滚动到指定位置时会固定在视窗中。 */
-  top: 0;
-  /* 指定元素在视窗顶部保持固定（当触发粘性效果时）。 */
-  width: 42%;
-  /* 设置容器固定宽度为280像素。 */
-  height: 100vh;
-  /* 使容器高度等于整个视窗高度（100% viewport height）。 */
-  display: flex;
-  /* 启用Flexbox布局模型。 */
-  flex-direction: column;
-  /* 设置子元素垂直排列（从上到下）。 */
-  align-items: flex-start;
-  /* 子元素沿交叉轴（水平方向）左对齐。 */
-  padding-right: 1rem;
-  /* 右侧添加1rem（约16px）的内边距，避免内容贴边。 */
-}
-
-/* 右侧滚动内容 */
-.main-content {
-  flex: 1;
-  /* 这是Flexbox布局属性，表示该元素在容器中具有"弹性增长"特性。 */
-  /* 数字1是flex-grow的简写，意味着该元素会占据容器中所有剩余可用空间（如果同级元素也有flex属性，则按比例分配）。 */
-  max-width: calc(100% - 300px);
-  /* 使用calc()函数进行动态计算，通常用于创建固定侧边栏+流动主内容的布局 */
-  /* 例如：如果视窗宽度是1200px，则最大宽度为900px（1200-300） */
+@media screen and (max-width: 1024px) {
+  body {
+    width: 95%;
+    padding: 0.5rem;
+  }
 }
 
 /* 标题区域样式 */
 .block-title h1 {
   font-size: 2.8rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
   font-weight: 680;
   color: #e2e8f0;
   display: inline-block;
@@ -122,13 +95,22 @@ body {
   margin: 0;
 }
 
+.block-summary strong {
+  font-weight: 360;
+  color: #e2e8f0;
+}
+
 /* 分隔线样式 */
 .block-skills,
-.block-work,
+.block-work {
+  border-top: 1.2px solid transparent;
+  margin-top: 1.6rem;
+}
+
 .block-projects,
 .block-edu {
   border-top: 1.2px solid transparent;
-  margin-top: 2rem;
+  margin-top: 0rem;
 }
 
 /* 模块标题样式 */
@@ -206,7 +188,7 @@ body {
 
 .block-skills h2 {
   grid-area: title;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
 }
 
 .block-skills .skill-container {
@@ -218,7 +200,7 @@ body {
 
 /* 工作经历样式 */
 .block-work .work-item {
-  margin-bottom: 2rem;
+  margin-bottom: 0.5rem;
 }
 
 .block-work .position {
@@ -276,7 +258,7 @@ body {
 
 /* 项目经历样式 */
 .block-projects .project-item {
-  margin-bottom: 2rem;
+  margin-bottom: 0.5rem;
 }
 
 .block-projects .title {
@@ -351,27 +333,7 @@ body {
   font-size: 0.92rem;
 }
 
-/* 响应式设计 - 小屏幕时恢复单列布局 */
-@media screen and (max-width: 768px) {
-  body {
-    flex-direction: column;
-    width: 90%;
-    padding: 1rem;
-  }
-
-  .block-title-container {
-    position: static;
-    width: 100%;
-    height: auto;
-    padding-right: 0;
-  }
-
-  .main-content {
-    max-width: 100%;
-  }
-}
-
-/* 更新CSS部分 */
+/* ---背景电筒照亮效果--- */
 :root {
   --bg-color: #0f172a;
   --light-color-1: rgba(31, 41, 71, 0.8);
@@ -395,11 +357,11 @@ body::before {
   width: 100%;
   height: 100%;
   background: radial-gradient(
-    circle at var(--mouse-x) var(--mouse-y),
-    var(--light-color-1) 0%,
-    var(--light-color-2) 16%,
-    var(--light-color-3) 28%,
-    var(--bg-color) 40%
+    circle 300px at var(--mouse-x) var(--mouse-y),
+    var(--light-color-1) 0px,
+    var(--light-color-2) 225px,
+    var(--light-color-3) 375px,
+    var(--bg-color) 450px
   );
   pointer-events: none;
   z-index: 0;
@@ -411,4 +373,49 @@ body::before {
 .block-title-container {
   position: relative;
   z-index: 1;
+}
+
+/* ---毛玻璃效果--- */
+.work-item,
+.project-item,
+.edu-item {
+  padding-top: 1.2rem;
+  padding-bottom: 1.2rem;
+  padding-left: 1.6rem;
+  padding-right: 1.6rem;
+  border-radius: 10px;
+  transition: all 0.3s ease-in-out;
+  background-clip: padding-box; /* 防止背景色延伸到 border 外 */
+}
+
+/* 鼠标悬停毛玻璃效果 */
+.work-item:hover,
+.project-item:hover,
+.edu-item:hover {
+  backdrop-filter: blur(12px);
+  background-color: rgba(34, 48, 73, 0.4);
+  box-shadow: 0 4px 24px rgba(94, 234, 212, 0.15);
+}
+
+.work-item:hover .position,
+.work-item:hover .company,
+.project-item:hover .title,
+.edu-item:hover .school,
+.edu-item:hover .major {
+  color: #5eead4 !important;
+}
+
+.block-work:hover .work-item:not(:hover),
+.block-projects:hover .project-item:not(:hover),
+.block-edu:hover .edu-item:not(:hover) {
+  opacity: 0.5;
+  transition: all 0.3s ease-in-out;
+}
+
+.work-item:hover,
+.project-item:hover,
+.edu-item:hover {
+  opacity: 1;
+  filter: none;
+  z-index: 2; /* 确保显示在上方 */
 }
