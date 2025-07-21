@@ -26,9 +26,15 @@
         <span class="iconfont icon-xiongmao-panda"></span>
         <div class="contact-info">
           <div class="location">广东省广州市</div>
-          <span><i class="iconfont icon-youxiang"></i>Yzzneedsxxxx@xx.com</span>
-          <span><i class="iconfont icon-shoujihaoma"></i>176xxxx2462</span>
           <span
+            id="email"
+            onclick="copyToClipboard(this, 'Yzzneedsxxxx@xx.com')"
+            ><i class="iconfont icon-youxiang"></i>Yzzneedsxxxx@xx.com</span
+          >
+          <span id="phone" onclick="copyToClipboard(this, '176xxxx2462')"
+            ><i class="iconfont icon-shoujihaoma"></i>176xxxx2462</span
+          >
+          <span id="pdf"
             ><i class="iconfont icon-pdf"></i
             ><button onclick="printToPDF()">To PDF</button></span
           >
@@ -231,7 +237,12 @@
         </div>
       </div>
 
-      <div class="iconfont icon-xiongmao-panda"></div>
+      <div class="scroll-to-top-container">
+        <div class="scroll-to-top" onclick="scrollToTop()">
+          <div class="iconfont icon-xiongmao-panda"></div>
+          <span>Scroll to top</span>
+        </div>
+      </div>
     </div>
     <script src="script.js"></script>
   </body>

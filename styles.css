@@ -40,10 +40,10 @@ body {
   margin-right: 0.5rem;
 }
 
-.icon-xiongmao-panda {
+.block-title .icon-xiongmao-panda {
   display: inline-block;
   transform: scaleX(-1);
-  font-size: 3.6em;
+  font-size: 2.8em;
 }
 
 .contact-info {
@@ -79,6 +79,62 @@ body {
   display: inline-flex;
   align-items: center;
   text-decoration: underline;
+}
+
+#email,
+#phone {
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+#email:hover,
+#phone:hover {
+  color: #5eead4;
+}
+
+/* 复制提示样式 */
+.copy-tooltip {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  animation: fadeInOut 1.5s ease-in-out;
+  z-index: 1000;
+  white-space: nowrap;
+  /* 新增定位控制 */
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -27px;
+}
+
+/* 为父元素添加相对定位 */
+#email,
+#phone {
+  position: relative;
+  cursor: pointer;
+}
+
+/* 保持原有动画 */
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 5px);
+  }
+  20% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+  80% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -5px);
+  }
 }
 
 /* 简介部分 */
@@ -331,6 +387,38 @@ body {
   color: #e2e8f0;
   text-decoration: underline;
   font-size: 0.92rem;
+}
+
+/* 页脚样式 */
+.scroll-to-top-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0;
+}
+
+.scroll-to-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: all 0.3s ease;
+}
+
+.scroll-to-top:hover {
+  opacity: 1;
+  transform: translateY(-5px);
+}
+
+.scroll-to-top .iconfont {
+  font-size: 2.5rem;
+  margin-bottom: -0.5rem;
+}
+
+.scroll-to-top span {
+  font-size: 0.92rem;
+  color: #e2e8f0;
 }
 
 /* ---背景电筒照亮效果--- */

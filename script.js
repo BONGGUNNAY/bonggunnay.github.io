@@ -35,3 +35,48 @@ document.addEventListener("DOMContentLoaded", function () {
     document.body.style.setProperty("--mouse-y", initY + "px");
   });
 });
+
+// 回到顶部
+function scrollToTop() {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+}
+
+// 自动复制邮箱手机
+function copyToClipboard(element, text) {
+  // 移除旧的提示（如果存在）
+  const oldTooltip = element.querySelector(".copy-tooltip");
+  if (oldTooltip) oldTooltip.remove();
+
+  navigator.clipboard
+    .writeText(text)
+    .then(() => {
+      // 创建提示元素
+      const tooltip = document.createElement("div");
+      tooltip.className = "copy-tooltip";
+      tooltip.textContent = "已复制!";
+
+      // 添加到点击元素内部
+      element.appendChild(tooltip);
+
+      // 动画结束后移除
+      setTimeout(() => {
+        tooltip.remove();
+      }, 1500);
+    })
+    .catch((err) => {
+      console.error("复制失败: ", err);
+      // 错误提示（红色样式）
+      const tooltip = document.createElement("div");
+      tooltip.className = "copy-tooltip";
+      tooltip.textContent = "复制失败!";
+      tooltip.style.color = "#ff6b6b";
+      element.appendChild(tooltip);
+
+      setTimeout(() => {
+        tooltip.remove();
+      }, 1500);
+    });
+}
