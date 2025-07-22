@@ -40,7 +40,7 @@ body {
   margin-right: 0.5rem;
 }
 
-.block-title .icon-xiongmao-panda {
+.block-title .icon_xiongmao-panda {
   display: inline-block;
   transform: scaleX(-1);
   font-size: 2.8em;
@@ -82,6 +82,10 @@ body {
   text-decoration: underline;
 }
 
+.contact-info button:hover {
+  color: #5eead4;
+}
+
 #email,
 #phone {
   cursor: pointer;
@@ -90,7 +94,8 @@ body {
 }
 
 #email:hover,
-#phone:hover {
+#phone:hover,
+#pdf:hover {
   color: #5eead4;
 }
 
@@ -441,7 +446,6 @@ body {
   --light-color-1: rgba(17, 32, 68, 1);
   --light-color-2: rgba(16, 29, 60, 0.8);
   --light-color-3: rgba(16, 27, 53, 1);
-  --light-color-4: rgba(16, 25, 46, 1);
   --mouse-x: -9999px;
   --mouse-y: -9999px;
 }
@@ -460,13 +464,11 @@ body::before {
   width: 100%;
   height: 100%;
   background: radial-gradient(
-    circle 450px at var(--mouse-x) var(--mouse-y),
+    circle 420px at var(--mouse-x) var(--mouse-y),
     var(--light-color-1) 0px,
-    var(--light-color-1) 80px,
     var(--light-color-2) 140px,
     var(--light-color-3) 280px,
-    var(--light-color-4) 420px,
-    var(--bg-color) 450px
+    var(--bg-color) 420px
   );
   pointer-events: none;
   z-index: 0;
@@ -523,4 +525,154 @@ body::before {
   opacity: 1;
   filter: none;
   z-index: 2; /* 确保显示在上方 */
+}
+
+/* ===== 打印优化样式 ===== */
+@media print {
+  /* 基础页面设置 */
+  body {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 1.2cm !important;
+    background: white !important;
+    color: #333 !important;
+  }
+
+  html {
+    background: white !important;
+    font-size: 14px !important;
+  }
+
+  /* 移除视觉特效 */
+  body::before,
+  .scroll-to-top-container,
+  .scroll-to-top,
+  .copy-tooltip {
+    display: none !important;
+  }
+
+  .work-item,
+  .project-item,
+  .edu-item {
+    background: none !important;
+    box-shadow: none !important;
+    filter: none !important;
+    backdrop-filter: none !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+  }
+
+  /* 去除 hover 效果 */
+  .work-item:hover,
+  .project-item:hover,
+  .edu-item:hover {
+    all: unset !important;
+  }
+
+  .contact-info button:hover,
+  #email:hover,
+  #phone:hover,
+  #pdf:hover {
+    all: unset !important;
+  }
+
+  /* 链接样式处理 */
+  a {
+    color: #333 !important;
+    text-decoration: underline;
+  }
+
+  /* 适应打印纸张宽度（A4） */
+  @page {
+    size: A4 portrait;
+    margin: 1.5cm;
+  }
+
+  /* 标题字体调整 */
+  .block-title h1 {
+    font-size: 2rem !important;
+    font-weight: 188 !important;
+    color: #333 !important;
+  }
+
+  .block-summary p {
+    font-size: 0.92rem !important;
+    line-height: 1.6 !important;
+  }
+
+  .block-title .icon_xiongmao-panda {
+    display: none !important;
+  }
+
+  .contact-info {
+    font-size: 0.95em !important;
+    color: #888 !important;
+  }
+
+  .contact-info .iconfont {
+    color: black !important;
+  }
+
+  /* 标题栏字体修正 */
+  h2 {
+    color: #5eead4 !important;
+  }
+
+  h3 {
+    color: #333 !important;
+    font-size: 0.9rem !important;
+    font-weight: 630 !important;
+    text-decoration: underline;
+  }
+
+  /* 技能标签颜色和样式简化 */
+  .keywords li {
+    color: #888 !important;
+    border: 1px solid #e2e2e2 !important;
+    font-size: 0.8rem !important;
+  }
+
+  .level.advanced,
+  .level.intermediate {
+    background: #e2e2e2 !important;
+    color: #888 !important;
+    font-weight: 320;
+  }
+
+  .block-work .position {
+    color: #333 !important;
+  }
+
+  .block-work .company::before {
+    color: #e2e2e2 !important;
+  }
+
+  .block-work .company {
+    color: #888 !important;
+  }
+
+  .block-projects .title {
+    color: #333 !important;
+  }
+
+  .block-edu .school {
+    color: #333 !important;
+  }
+
+  .block-edu .major::before {
+    color: #e2e2e2 !important;
+  }
+
+  .block-edu .major {
+    color: #888 !important;
+  }
+
+  /* 删除浮动，统一时间位置 */
+  .time {
+    float: none !important;
+    display: block !important;
+    margin-top: 0.2rem;
+    color: #888 !important;
+  }
 }
