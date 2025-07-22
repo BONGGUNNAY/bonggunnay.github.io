@@ -1,9 +1,9 @@
 /* 基础样式 */
 html {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, sans-serif;
+  font-family: "Noto Sans SC", sans-serif, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial;
   font-size: 16px;
-  font-weight: 360;
+  font-weight: 400;
   color: #91a1b8;
   line-height: 1.5;
   box-sizing: border-box;
@@ -18,7 +18,7 @@ html {
 
 body {
   width: 68%;
-  max-width: 1280px;
+  max-width: 980px;
   margin: 0 auto;
   padding: 2rem;
 }
@@ -34,7 +34,7 @@ body {
 .block-title h1 {
   font-size: 2.8rem;
   margin-bottom: 2rem;
-  font-weight: 680;
+  font-weight: 720;
   color: #e2e8f0;
   display: inline-block;
   margin-right: 0.5rem;
@@ -44,6 +44,7 @@ body {
   display: inline-block;
   transform: scaleX(-1);
   font-size: 2.8em;
+  opacity: 0.8;
 }
 
 .contact-info {
@@ -175,7 +176,7 @@ body {
 .block-projects h2,
 .block-edu h2 {
   font-size: 0.92rem;
-  font-weight: 600;
+  font-weight: 720;
   color: #e2e8f0;
   margin-bottom: 1.2rem;
   margin-top: 1.2rem;
@@ -204,7 +205,7 @@ body {
 .skill-header .level {
   align-self: flex-start;
   font-size: 0.8rem;
-  font-weight: 600;
+  font-weight: 720;
   padding: 0.1em 0.5em;
   border-radius: 4px;
   color: #ffffff;
@@ -233,6 +234,7 @@ body {
   padding: 0.3em 0.6em;
   border-radius: 2px;
   font-size: 0.8rem;
+  font-weight: 420;
 }
 
 /* 技能网格布局 */
@@ -250,8 +252,16 @@ body {
 .block-skills .skill-container {
   grid-area: skills;
   display: grid;
+  /* 默认响应式（小屏1-2列） */
   grid-template-columns: repeat(auto-fill, minmax(228px, 1fr));
   gap: 1rem;
+}
+
+@media (min-width: 900px) {
+  /* 当宽度足够时强制三列 */
+  .block-skills .skill-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 /* 工作经历样式 */
@@ -309,7 +319,8 @@ body {
 
 .block-work .highlights li {
   font-size: 0.92rem;
-  margin-bottom: 1rem;
+  line-height: 1.6rem;
+  margin-bottom: 0.5rem;
 }
 
 /* 项目经历样式 */
@@ -343,7 +354,8 @@ body {
 
 .block-projects .highlights li {
   font-size: 0.92rem;
-  margin-bottom: 1rem;
+  line-height: 1.6rem;
+  margin-bottom: 0.5rem;
 }
 
 /* 教育经历样式 */
@@ -394,7 +406,8 @@ body {
   width: 100%;
   display: flex;
   justify-content: center;
-  margin: 1rem 0;
+  margin-top: 1rem;
+  margin-bottom: 1.8rem;
 }
 
 .scroll-to-top {
@@ -417,16 +430,18 @@ body {
 }
 
 .scroll-to-top span {
-  font-size: 0.92rem;
+  font-family: "Bitcount", system-ui;
+  font-size: 1rem;
   color: #e2e8f0;
 }
 
 /* ---背景电筒照亮效果--- */
 :root {
   --bg-color: #0f172a;
-  --light-color-1: rgba(31, 41, 71, 0.8);
-  --light-color-2: rgba(23, 33, 63, 0.9);
-  --light-color-3: rgba(19, 28, 54, 0.95);
+  --light-color-1: rgba(17, 32, 68, 1);
+  --light-color-2: rgba(16, 29, 60, 0.8);
+  --light-color-3: rgba(16, 27, 53, 1);
+  --light-color-4: rgba(16, 25, 46, 1);
   --mouse-x: -9999px;
   --mouse-y: -9999px;
 }
@@ -434,7 +449,7 @@ body {
 body {
   position: relative;
   min-height: 100vh;
-  background: var(--bg-color);
+  background: transparent;
 }
 
 body::before {
@@ -445,10 +460,12 @@ body::before {
   width: 100%;
   height: 100%;
   background: radial-gradient(
-    circle 300px at var(--mouse-x) var(--mouse-y),
+    circle 450px at var(--mouse-x) var(--mouse-y),
     var(--light-color-1) 0px,
-    var(--light-color-2) 225px,
-    var(--light-color-3) 375px,
+    var(--light-color-1) 80px,
+    var(--light-color-2) 140px,
+    var(--light-color-3) 280px,
+    var(--light-color-4) 420px,
     var(--bg-color) 450px
   );
   pointer-events: none;
