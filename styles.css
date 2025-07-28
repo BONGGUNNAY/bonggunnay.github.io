@@ -334,6 +334,10 @@ body {
   margin-bottom: 0.5rem;
 }
 
+.block-work .mark {
+  font-size: 0.8rem;
+  margin-left: 0.2rem;
+}
 /* 项目经历样式 */
 .block-projects .project-item {
   margin-bottom: 0rem;
@@ -708,5 +712,5 @@ body::before {
     display: block !important;
     margin-top: 0.2rem;
     color: #888 !important;
-  }
-} */
+  } */
+}
