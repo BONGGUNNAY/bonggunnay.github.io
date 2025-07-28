@@ -166,7 +166,7 @@ body {
 .block-skills,
 .block-work {
   border-top: 1.2px solid transparent;
-  margin-top: 1.6rem;
+  margin-top: 1.3rem;
 }
 
 .block-projects,
@@ -277,7 +277,7 @@ body {
 }
 
 .block-work .work-item {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0rem;
 }
 
 .block-work .position {
@@ -320,7 +320,7 @@ body {
 
 .block-work .summary p {
   font-size: 0.92rem;
-  margin: 1.5rem 0;
+  margin: 1.2rem 0;
   text-align: justify;
 }
 
@@ -336,7 +336,7 @@ body {
 
 /* 项目经历样式 */
 .block-projects .project-item {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0rem;
 }
 
 .block-projects .title {
@@ -355,7 +355,7 @@ body {
 
 .block-projects .summary p {
   font-size: 0.92rem;
-  margin: 1.5rem 0;
+  margin: 1.2rem 0;
   text-align: justify;
 }
 
@@ -557,8 +557,6 @@ body::before {
 
   /* 移除视觉特效 */
   body::before,
-  .scroll-to-top-container,
-  .scroll-to-top,
   .copy-tooltip {
     display: none !important;
   }
@@ -630,6 +628,12 @@ body::before {
     color: #5eead4 !important;
   }
 
+  .block-projects,
+  .block-edu {
+    border-top: 1.2px solid transparent;
+    margin-top: 1rem !important;
+  }
+
   h3 {
     color: #333 !important;
     font-size: 0.9rem !important;
@@ -649,6 +653,19 @@ body::before {
     background: #e2e2e2 !important;
     color: #888 !important;
     font-weight: 320;
+  }
+
+  .block-work .work-item {
+    margin-bottom: 1.5rem !important;
+  }
+
+  .block-projects .project-item {
+    margin-bottom: 1.5rem !important;
+  }
+
+  .block-work .summary p,
+  .block-projects .summary p {
+    margin: 1rem 0 !important;
   }
 
   .block-work .position {
@@ -679,11 +696,17 @@ body::before {
     color: #888 !important;
   }
 
-  /* 删除浮动，统一时间位置 */
-  .time {
+  strong {
+    font-weight: 400 !important;
+    color: #333 !important;
+  }
+
+  /* 删除浮动，统一时间位置
+  .block-work .time,
+  .block-projects .time {
     float: none !important;
     display: block !important;
     margin-top: 0.2rem;
     color: #888 !important;
   }
-}
+} */
