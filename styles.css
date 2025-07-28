@@ -270,6 +270,12 @@ body {
 }
 
 /* 工作经历样式 */
+.block-work strong,
+.block-projects strong {
+  color: #e2e8f0;
+  font-weight: 400;
+}
+
 .block-work .work-item {
   margin-bottom: 0.5rem;
 }
@@ -480,6 +486,11 @@ body::before {
 .block-title-container {
   position: relative;
   z-index: 1;
+}
+
+::selection {
+  background-color: #5eead4;
+  color: #134e4a;
 }
 
 /* ---毛玻璃效果--- */
