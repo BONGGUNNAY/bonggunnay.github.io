@@ -151,7 +151,7 @@ body {
 
 .block-summary p {
   font-size: 0.95rem;
-  line-height: 1.6;
+  line-height: 1.8rem;
   text-align: justify;
   hyphens: auto;
   margin: 0;
@@ -160,6 +160,14 @@ body {
 .block-summary strong {
   font-weight: 360;
   color: #e2e8f0;
+}
+
+.scrollblock.block-summary strong {
+  transition: color 0.3s ease;
+}
+
+.scrollblock.block-summary:hover strong {
+  color: #5eead4;
 }
 
 /* 分隔线样式 */
@@ -611,7 +619,7 @@ body::before {
 
   .block-summary p {
     font-size: 0.92rem !important;
-    line-height: 1.6 !important;
+    line-height: 1.6rem !important;
   }
 
   .block-title .icon_xiongmao-panda {
