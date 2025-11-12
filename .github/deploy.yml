@@ -1,0 +1,27 @@
+name: Deploy to Aliyun OSS (Hong Kong)
+
+on:
+  push:
+    branches:
+      - main # 当推送到 main 分支时触发部署
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1️⃣ 获取你的仓库代码
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # 2️⃣ 设置阿里云 ossutil 工具
+      - name: Setup OSSUTIL
+        uses: manyuanrong/setup-ossutil@v2
+        with:
+          endpoint: oss-cn-hongkong.aliyuncs.com
+          access-key-id: ${{ secrets.OSS_KEY_ID }}
+          access-key-secret: ${{ secrets.OSS_KEY_SECRET }}
+
+      # 3️⃣ 上传网站文件到 OSS
+      - name: Upload website files to OSS
+        run: ossutil cp ./ oss://zziyan-hk/ --recursive --force
