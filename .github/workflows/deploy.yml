@@ -33,4 +33,4 @@ jobs:
       # 4️⃣ 上传网站文件到 OSS（排除 GitHub 文件夹）
       - name: Upload website files to OSS
         run: |
-          ./ossutil64 cp -r ./ oss://zziyan-hk/ --exclude ".git/*" --exclude ".github/*" --update
+          ./ossutil64 cp -r ./ oss://zziyan-hk/ --exclude ".git" --exclude ".github" --update
