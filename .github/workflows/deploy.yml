@@ -3,7 +3,7 @@ name: Deploy to Aliyun OSS (Hong Kong)
 on:
   push:
     branches:
-      - main # 推送到 main 分支时自动部署
+      - main
 
 jobs:
   deploy:
@@ -14,12 +14,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # 2️⃣ 安装 ossutil 工具（阿里云官方提供）
+      # 2️⃣ 安装 ossutil
       - name: Install ossutil
         run: |
           curl -o ossutil64 https://gosspublic.alicdn.com/ossutil/1.7.17/ossutil64
           chmod +x ossutil64
-          ./ossutil64 --version
 
       # 3️⃣ 配置阿里云凭证
       - name: Configure OSS credentials
@@ -30,7 +29,22 @@ jobs:
           echo "accessKeyID=${{ secrets.OSS_KEY_ID }}" >> ~/.ossutilconfig
           echo "accessKeySecret=${{ secrets.OSS_KEY_SECRET }}" >> ~/.ossutilconfig
 
-      # 4️⃣ 上传网站文件到 OSS（排除 GitHub 文件夹）
+      # 4️⃣ 构建干净的部署目录
+      - name: Prepare deploy folder
+        run: |
+          mkdir deploy
+          rsync -av --progress ./ ./deploy \
+            --exclude ".git" \
+            --exclude ".github" \
+            --exclude ".gitignore" \
+            --exclude "ossutil64"
+
+      # 5️⃣ 清空 bucket（⚠️谨慎：会删除 OSS 中所有内容）
+      - name: Clean OSS bucket
+        run: |
+          ./ossutil64 rm oss://zziyan-hk/ -r -f
+
+      # 6️⃣ 上传干净的网站文件
       - name: Upload website files to OSS
         run: |
-          ./ossutil64 cp -r ./ oss://zziyan-hk/ --exclude ".git" --exclude ".github" --update
+          ./ossutil64 cp -r ./deploy oss://zziyan-hk/ --update
